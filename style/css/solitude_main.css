@@ -1,4 +1,13 @@
-html {background-color: #D5E1DD}
+html {
+background-color: #D5E1DD
+}
+
+body{
+	font-family: arial;
+	font-size: 0.9em;
+	line-height: 2;
+	color: #3c3c3c;
+}
 
 #document {
 width: 700px;
@@ -9,31 +18,65 @@ margin-right: auto;
 }
 
 #title {
-background-color: #e9e691;
+background-color: #F7F3E8;
 height: 30px;
 width: 100%;
-float: left;
+max-width: 100%;
+margin-bottom: 10px;
+border: 1px solid #cbcdcc;
+line-height: 2;
+color: #3c3c3c;
+padding: 5px;
+}
+#title:focus {
+outline: none;
 }
 
 #content {
 background-color: #F7F3E8;
 min-height: 370px;
 width: 100%;
-float: left;
+max-width: 100%;
 overflow: hidden;
-resize: auto;
+border: 1px solid #cbcdcc;
+line-height: 2;
+color: #3c3c3c;
+padding: 5px;
 }
-
+#content:focus {
+outline: none;
+}
 #menu {
 height: 50px;
 width: 100%;
 position: fixed;
 top: 0px;
-background-color: #ffffff;
+background-color: #747E80;
+}
+#menuButtons{
+margin-left: auto;
+margin-right: auto;
+border-collapse: separate;
+border-spacing: 10px 0px;
 }
 
-#saveButton {
-height: 20px;
-width: 40px;
-background-color: red;
+
+#save {
+
+}
+#new{
+}
+
+.button{
+height: 30px;
+width: 60px;
+background-color: #77BED2;
+border-radius: 3px;
+margin-top: 10px;
+color: #ededed;
+text-align: center;
+}
+.button:hover{
+background-color: #F2583E;
+cursor: pointer;
 }

@@ -6,11 +6,50 @@
         <title>Solitude</title>
         <link rel="stylesheet" type="text/css" href="style/css/yui_reset.css"/>
 		<link rel="stylesheet" type="text/css" href="style/css/solitude_main.css"/>
-        <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
-		
+        <script type="text/javascript" src="lib/javascript/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="lib/javascript/storage.js"></script>
 		<script type='text/javascript'>
+			/*
+			 * Inside this document ready function we handel all the document handling logic:
+			 * Getting the latest edited document along with its id and sets it as the current document.
+			 * Handling saving of the document and sets the new documents id as the current document
+			 * Handling the event of a new document and sets current document to undefined.
+			 * 
+			*/
 			$(document).ready(function(){
-				
+				var dItemHandler = new documentItemHandler();
+				//check if local storage not empty and get the latest document from it if not
+				if(localStorage.length > 0){
+					var latestDocumentId = dItemHandler.getLatestDocumentId();
+					var latestDocument = dItemHandler.get(latestDocumentId);
+					var latestDocumentArray = JSON.parse(latestDocument);
+					$('#title').val(latestDocumentArray['title']);
+					$('#content').val(latestDocumentArray['content']);
+					dItemHandler.currentDocumentId = latestDocumentId;
+				}
+				//create new documentItem with the values from text areas and save it to local storage
+				$('#save').click(function(){
+					var title = $('#title').val();
+					var content = $('#content').val();
+					var doc = new documentItem();
+					doc.title = title;
+					doc.content = content;
+					dItemHandler.save(doc);
+				});
+				//saves the document each 5 seconds
+				var intervalsave = window.setInterval(function(){
+					var title = $('#title').val();
+					var content = $('#content').val();
+					var doc = new documentItem();
+					doc.title = title;
+					doc.content = content;
+					dItemHandler.save(doc);
+				}, 4500);
+				$('#new').click(function(){
+					$('#title').val('');
+					$('#content').val('');
+					dItemHandler.currentDocumentId = undefined;
+				});
 			});
 		</script>
     </head> 
@@ -18,13 +57,16 @@
     <body>
 	
 		<div id='menu'>
-		<!-- Menu here-->
-		<div id='saveButton'>
-		</div>
+		<table id='menuButtons'>
+		<tr>
+			<td><div id='save' class='button'>save</div></td>
+			<td><div id='new' class='button'>new</div></td>
+		</tr>
+		</table>
 		</div>
 		
 		<div id='document'>
-			<textarea id="title">Title</textarea>
+			<textarea id="title"></textarea>
 			<textarea id="content"></textarea>
 		</div>
 	
