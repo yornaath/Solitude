@@ -36,7 +36,7 @@
 					doc.content = content;
 					dItemHandler.save(doc);
 				});
-				//saves the document each 5 seconds
+				//saves the document every 5 seconds
 				var intervalsave = window.setInterval(function(){
 					var title = $('#title').val();
 					var content = $('#content').val();
@@ -50,6 +50,15 @@
 					$('#content').val('');
 					dItemHandler.currentDocumentId = undefined;
 				});
+			});
+			
+			/*
+			 * Inside this document ready function we handle all the animations based on user events
+			*/
+			$(document).ready(function(){
+				
+				
+				
 			});
 		</script>
     </head> 
