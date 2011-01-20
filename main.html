@@ -4,16 +4,33 @@
         <link rel="shortcut icon" href="static/grphx/icon.ico" > 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <title>Solitude</title>
-        <link rel="stylesheet" type="text/css" href="style/css/yui_reset.css"/>  
-        <script type="text/javascript" src="lib/jquery/1.4.4.js"
+        <link rel="stylesheet" type="text/css" href="style/css/yui_reset.css"/>
+		<link rel="stylesheet" type="text/css" href="style/css/solitude_main.css"/>
+        <script type="text/javascript" src="lib/jquery/1.4.4.js"/>
 		
 		<script type='text/javascript'>
+		
+			$(document).ready(function() {
+			
+			
+				$('#saveButton').click(function(){
+					alert('ss');
+				});
+			
+			
+			});
 			
 		</script>
     </head> 
 
     <body>
 	
+		<div id='menu'>
+		<!-- Menu here-->
+		<div id='saveButton'>
+		</div>
+		</div>
+		
 		<div id='document'>
 			<textarea id="title">Title</textarea>
 			<textarea id="content"></textarea>
