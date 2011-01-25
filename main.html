@@ -7,24 +7,33 @@
         <link rel="stylesheet" type="text/css" href="style/css/yui_reset.css"/>
 		<link rel="stylesheet" type="text/css" href="style/css/solitude_main.css"/>
         <script data-main="main" src="lib/javascript/jquery.require.js"></script>
+		<script src="lib/javascript/jquery.ui.js"></script>
     </head> 
 
     <body>
 	
-		<div id='menu'>
-		<table id='menuButtons'>
-		<tr>
-			<td><div id='save' class='button'>save</div></td>
-			<td><div id='new' class='button'>new</div></td>
-		</tr>
-		</table>
-		</div>
-		
-		<div id='document'>
-			<textarea id="title"></textarea>
-			<textarea id="content"></textarea>
+		<div id="docBrowser">
 		</div>
 	
+		<div id="layerOne">
+			<div id='menu'>
+				<table id='menuButtons'>
+					<tr>
+						<td><div id='save' class='button'>save</div></td>
+						<td><div id='new' class='button'>new</div></td>
+						<td><div id='open' class='button'>open</div></td>
+					</tr>
+				</table>
+			</div>
+			
+			<div id='document'>
+				<textarea id="title"></textarea>
+				<textarea id="content"></textarea>
+			</div>
+		</div>
+		
+		
+		
 	</body>
 
 </html>
