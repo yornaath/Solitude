@@ -1,5 +1,13 @@
+@font-face {
+	font-family: 'BebasRegular';
+	src: url('bebas___-webfont.eot');
+	src: local('☺'), url('bebas___-webfont.woff') format('woff'), url('bebas___-webfont.ttf') format('truetype'), url('bebas___-webfont.svg#webfontWP6hJhSP') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
 html {
-background-color: #D5E1DD
+	background-color: #D5E1DD
 }
 
 body{
@@ -10,55 +18,54 @@ body{
 }
 
 #document {
-width: 820px;
-min-height: 400px;
-margin-top: 60px;
-margin-left: auto;
-margin-right: auto;
+	width: 820px;
+	min-height: 400px;
+	margin: 60px auto 10px auto;
 }
 
 #title {
-background-color: #F7F3E8;
-height: 25px;
-width: 100%;
-max-width: 100%;
-margin-bottom: 10px;
-border: 1px solid #cbcdcc;
-line-height: 1.8;
-color: #3c3c3c;
-padding: 5px;
+	background-color: #F7F3E8;
+	height: 25px;
+	width: 100%;
+	max-width: 100%;
+	margin: 0px 0px 10px 0px;
+	border: 1px solid #cbcdcc;
+	line-height: 1.8;
+	color: #3c3c3c;
+	padding: 5px;
 }
 #title:focus {
-outline: none;
+	outline: none;
 }
 
 #content {
-background-color: #F7F3E8;
-min-height: 700px;
-width: 100%;
-max-width: 100%;
-overflow: hidden;
-border: 1px solid #cbcdcc;
-line-height: 2;
-color: #3c3c3c;
-padding: 5px;
+	background-color: #F7F3E8;
+	min-height: 700px;
+	width: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	border: 1px solid #cbcdcc;
+	line-height: 2;
+	color: #3c3c3c;
+	padding: 5px;
 }
 #content:focus {
-outline: none;
+	outline: none;
 }
 #menu {
-height: 50px;
-width: 100%;
-position: fixed;
-top: 0px;
-background-color: #747E80;
-overflow: hidden;
+	height: 50px;
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	background: #747E80;
+	overflow: hidden;
 }
 #menuButtons{
-margin-left: auto;
-margin-right: auto;
-border-collapse: separate;
-border-spacing: 10px 0px;
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: separate;
+	border-spacing: 10px 0px;
+	font-size: 11px;
 }
 
 
@@ -68,36 +75,47 @@ border-spacing: 10px 0px;
 }
 
 .button{
-height: 30px;
-width: 60px;
-background-color: #77BED2;
-border-radius: 3px;
-margin-top: 10px;
-color: #ededed;
-text-align: center;
+	height: 30px;
+	width: 60px;
+	background-color: #77BED2;
+	border-radius: 3px;
+	margin-top: 10px;
+	color: #ededed;
+	text-align: center;
+	font-family: 'BebasRegular';
+	letter-spacing: 2px;
+	line-height: 30px;
 }
 .button:hover{
-background-color: #F2583E;
-cursor: pointer;
+	background-color: #F2583E;
+	cursor: pointer;
 }
 
 #docBrowser{
-position: fixed;
-display: none;
-max-height: 402px;
-width: 500px;
-margin-top: 220px;
-z-index: 20;
-margin-top: 0px;
-margin-left: 0px;
-padding: 1px;
-border-radius: 5px;
-border: 5px solid white;
-background-color: #f2f2f2;
--moz-box-shadow: 2px 2px 1px #888;
--webkit-box-shadow: 2px 2px 1px #888;
-box-shadow: 2px 2px 1px #888;
+	position: fixed;
+	display: none;
+	max-height: 470px;
+	width: 500px;
+	margin-top: 220px;
+	z-index: 20;
+	margin-top: 0px;
+	margin-left: 0px;
+	padding: 1px;
+	border-radius: 5px;
+	border: 5px solid white;
+	background-color: #f2f2f2;
+	-moz-box-shadow: 2px 2px 1px #888;
+	-webkit-box-shadow: 2px 2px 1px #888;
+	box-shadow: 2px 2px 1px #888;
 }
+
+.docBrowserPage{
+	display: none;
+}
+#docBrowser > .docBrowserPage:first-child{
+	display: block;
+}
+
 #docBrowser table{
 	margin-top: -1px;
 	width: 500px;
@@ -111,7 +129,7 @@ box-shadow: 2px 2px 1px #888;
 	background-color: rgba(119, 190, 210, 0.5);
 	color: #4a4949;
 }
-#docBrowser tr:hover{
+#docBrowser > table tr:hover{
 	cursor: pointer;
 	background-color: #77bed2;
 	color: white;	
@@ -125,3 +143,28 @@ box-shadow: 2px 2px 1px #888;
 	color: #6a6969;
 	font-size: 10px;
 }
+#docBrowser .nav{
+	background: white;
+	margin: 1px 0px 1px 0px;
+	width: 500px;
+	height: 15px;
+	bottom: 0px;
+}
+#docBrowser .nav table{
+	height: 15px;
+}
+#docBrowser .nav tr{
+	height: 15px;
+	background: none;
+}
+#docBrowser .nav tr td{
+	line-height: 15px;
+	width: 50%;
+	text-align: center;
+	height: 15px;
+}
+#docBrowser .nav tr td:hover{
+	background: #ebecec;
+	height: 15px;
+}
+
