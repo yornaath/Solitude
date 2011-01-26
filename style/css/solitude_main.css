@@ -84,39 +84,44 @@ cursor: pointer;
 #docBrowser{
 position: fixed;
 display: none;
-max-height: 400px;
-overflow: scroll;
+max-height: 402px;
 width: 500px;
 margin-top: 220px;
 z-index: 20;
 margin-top: 0px;
 margin-left: 0px;
+padding: 1px;
 border-radius: 5px;
 border: 5px solid white;
-background: #f2f2f2;
+background-color: #f2f2f2;
 -moz-box-shadow: 2px 2px 1px #888;
 -webkit-box-shadow: 2px 2px 1px #888;
 box-shadow: 2px 2px 1px #888;
 }
 #docBrowser table{
+	margin-top: -1px;
+	width: 500px;
 	border-collapse: separate;
 	border-spacing: 0px 1px;
 }
 #docBrowser tr{
 	width: 500px;
+	height: 30px;
 	font-size: 12px;
-	background: #77BED2;
-	color: #F7F3E8;
+	background-color: rgba(119, 190, 210, 0.5);
+	color: #4a4949;
+}
+#docBrowser tr:hover{
+	cursor: pointer;
+	background-color: #77bed2;
+	color: white;	
 }
 #docBrowser tr > td:first-child{
-	width: 375px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 5px;
+	text-indent: 5px;
+	width: 385px;
 }
 #docBrowser tr > td:first-child + td{
 	width: 115px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-right: 5px;
+	color: #6a6969;
+	font-size: 10px;
 }
