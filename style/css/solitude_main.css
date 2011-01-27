@@ -101,6 +101,7 @@ body{
 	margin-top: 0px;
 	margin-left: 0px;
 	padding: 1px;
+	overflow: hidden;
 	border-radius: 5px;
 	border: 5px solid white;
 	background-color: #f2f2f2;
