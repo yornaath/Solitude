@@ -53,12 +53,13 @@ body{
 	outline: none;
 }
 #menu {
-	height: 50px;
+	height: 40px;
 	width: 100%;
 	position: fixed;
-	top: 0px;
+	top: -2px;
 	background: #747E80;
 	overflow: hidden;
+	border-radius: 2px;
 }
 #menuButtons{
 	margin-left: auto;
@@ -75,20 +76,21 @@ body{
 }
 
 .button{
-	height: 30px;
+	height: 40px;
 	width: 60px;
-	background-color: #77BED2;
-	border-radius: 3px;
-	margin-top: 10px;
+	background-color: #6F8E94;
+	border-radius: 1px;
+	margin-top: 0px;
 	color: #ededed;
 	text-align: center;
-	font-family: 'BebasRegular';
+	font-family: arial;
 	letter-spacing: 2px;
-	line-height: 30px;
+	line-height: 40px;
 }
 .button:hover{
-	background-color: #F2583E;
+	background-color: #6BA5B0;
 	cursor: pointer;
+	-webkit-transform: scale(2);
 }
 
 #docBrowser{
