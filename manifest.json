@@ -1,14 +1,14 @@
 {
   "name": "Solitude",
   "description": "A distraction free offline writing tool",
-  "version": "1",
+  "version": "0.0.3",
   "app": {
     "launch": {
       "local_path": "main.html"
     }
   },
   "icons": {
-    "16": "icon_16.png"
+    "16": "icons\icon_16.png"
   },
   "permissions": [
     "unlimitedStorage",

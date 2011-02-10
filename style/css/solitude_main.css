@@ -78,6 +78,7 @@ aside{
 	height: 40px;
 	width: 15px;
   margin-left: 832px;
+  border-left: 1px solid #9BC2BF;
 	background: rgba(169/199/197, 1) url(../grphx/menuslider.png);
 	overflow: hidden;
 	-moz-border-radius: 0px 2px 2px 0px;
