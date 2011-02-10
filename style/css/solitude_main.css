@@ -22,17 +22,17 @@ header{
   width: 100%;
 }
 #wrapper{
-  width: 1000px;
+  width: 80%;
   margin: 10px auto 5px 5%;
 }
 aside{
-  width: 270px;
+  width: 29%;
   float: left;
   min-height: 400px;
 }
 
 #document {
-	width: 720px;
+	width: 70%;
 	min-height: 400px;
   float: right;
 }
@@ -85,7 +85,6 @@ aside{
   position: absolute;
 	height: 40px;
 	width: 15px;
-  margin-left: 732px;
   border-left: 1px solid #9BC2BF;
 	background: rgba(169/199/197, 1) url(../grphx/menuslider.png);
 	overflow: hidden;
