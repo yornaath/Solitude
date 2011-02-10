@@ -23,12 +23,12 @@ header{
   background: red;
 }
 #wrapper{
-  width: 1050px;
+  width: 1000px;
   margin: 10px auto 5px auto;
 }
 aside{
   background: red;
-  width: 320px;
+  width: 270px;
   float: left;
   min-height: 400px;
 }
