@@ -17,10 +17,26 @@ body{
 	color: #3c3c3c;
 }
 
+header{
+  height: 65px;
+  width: 100%;
+  background: red;
+}
+#wrapper{
+  width: 1050px;
+  margin: 10px auto 5px auto;
+}
+aside{
+  background: red;
+  width: 320px;
+  float: left;
+  min-height: 400px;
+}
+
 #document {
-	width: 820px;
+	width: 720px;
 	min-height: 400px;
-	margin: 60px auto 10px auto;
+  float: right;
 }
 
 #title {
@@ -67,17 +83,11 @@ body{
 	outline: none;
 }
 
-aside{
-  background: red;
-  width: 220px;
-  float: right;
-  min-height: 400px;
-}
 #menu {
   position: absolute;
 	height: 40px;
 	width: 15px;
-  margin-left: 832px;
+  margin-left: 732px;
   border-left: 1px solid #9BC2BF;
 	background: rgba(169/199/197, 1) url(../grphx/menuslider.png);
 	overflow: hidden;
@@ -131,85 +141,5 @@ aside{
   transform: scale(1.5);
 }
 
-#docBrowser{
-	position: fixed;
-	display: none;
-	max-height: 470px;
-	width: 500px;
-	margin-top: 220px;
-	z-index: 20;
-	margin-top: 0px;
-	margin-left: 0px;
-	padding: 1px;
-	overflow: hidden;
-	border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-	border: 5px solid white;
-	background-color: #f2f2f2;
-	-moz-box-shadow: 2px 2px 1px #888;
-	-webkit-box-shadow: 2px 2px 1px #888;
-  -o-box-shadow: 2px 2px 1px #888;
-	box-shadow: 2px 2px 1px #888;
-}
 
-.docBrowserPage{
-	display: none;
-}
-#docBrowser > .docBrowserPage:first-child{
-	display: block;
-}
-
-#docBrowser table{
-	margin-top: -1px;
-	width: 500px;
-	border-collapse: separate;
-	border-spacing: 0px 1px;
-}
-#docBrowser tr{
-	width: 500px;
-	height: 30px;
-	font-size: 12px;
-	background-color: rgba(119, 190, 210, 0.5);
-	color: #4a4949;
-}
-#docBrowser > table tr:hover{
-	cursor: pointer;
-	background-color: #77bed2;
-	color: white;	
-}
-#docBrowser tr > td:first-child{
-	text-indent: 5px;
-	width: 385px;
-}
-#docBrowser tr > td:first-child + td{
-	width: 115px;
-	color: #6a6969;
-	font-size: 10px;
-}
-#docBrowser .nav{
-	background: white;
-	margin: 1px 0px 1px 0px;
-	width: 500px;
-	height: 15px;
-	bottom: 0px;
-}
-#docBrowser .nav table{
-	height: 15px;
-}
-#docBrowser .nav tr{
-	height: 15px;
-	background: none;
-}
-#docBrowser .nav tr td{
-	line-height: 15px;
-	width: 50%;
-	text-align: center;
-	height: 15px;
-}
-#docBrowser .nav tr td:hover{
-	background: #ebecec;
-	height: 15px;
-}
 
