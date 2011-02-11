@@ -24,80 +24,76 @@
           
             
             function twitterTagFeed(){
-            
+              
+              var self = this;
               
               this.states = {1:'running', 2:'stopped', 3:'paused'};
               this.state = 2;
               this.apiCallInterval = 10000;
               this.query;
-              this.lastId;
+              this.sinceId;
               
               this.run = function(){
-                var url = this.generateUrl(this.query);
-                this.apiCall(url);
                 setInterval(function(){
-                  
-                  url = this.generateUrl(this.query);
-                  this.apiCall(url);
-                
+                  var url = self.generateUrl(self.query);
+                  self.apiCall(url);
                 }, this.apiCallInterval);
               };
               
               this.generateUrl = function(query){
-                var url = "http://search.twitter.com/search.json?lang=en&rpp=5";
-                var qi;
-                if(this.lastId){
-                  url += "&since_id="+this.lastId;
-                }
-                url += "&q=";
+                var url = "http://search.twitter.com/search.json?&rpp=5&result_type=recent";
+                var query = query.split(' ').join('');
                 var queryParams = query.split(",");
+                var qi;
+                url += "&q=";
                 for(qi = 0; qi < queryParams.length; qi++){
                   url += "%23"+queryParams[qi];
                   if(qi < queryParams.length -1){
                     url += "&";
                   }
                 }
-                url = url.split(' ').join('');
+                if(this.sinceId){
+                  url += "&since_id="+$('aside p:first-child').atr('id');
+                }
                 return url;
               };
               
               this.apiCall = function(url){
-                var renderer = this.renderStatus();
                 $.ajax({
                   url: url,
                   crossDomain: true,
                   dataType: "jsonp",
                   success: function(response){
                     var feedData = response['results'];
-                    renderer(feedData);
+                    if(feedData){
+                      self.statusRenderer(feedData.reverse());
+                    }
                   }
                 });
               };
               
-              this.renderStatus = function(feedData){
-                return function(feedData){
-                  var utf8Ei;
-                  for(utf8Ei = 0; utf8Ei < feedData.length; utf8Ei++){
-                    feedData[utf8Ei].text = unescape(encodeURIComponent(feedData[utf8Ei].text));
+              
+              this.statusRenderer = function(feedData){
+                var statIt;
+                var interValSpeed = (this.apiCallInterval / feedData.length)-300;
+                for(statIt = 0; statIt < feedData.length; statIt++){
+                  var status = unescape(encodeURIComponent(feedData[statIt].text));
+                  $('aside').prepend("<p id='"+feedData[statIt].id+"' style='border-bottom: 1px solid black; width: 100%; display: none; font-size: 10px;'>"+status+"</p>");
+                  if((statIt+1) == feedData.length){
                   }
-                  $('aside').prepend("<p style='border-bottom: 1px solid black; width: 100%'>"+feedData[0].text+"</p>");
-                  var statusesLeft = feedData.length - 1;
-                  var statusIterator = 1;
-                  var updateInterval = Math.floor(9800 / statusesLeft);
-                  var updateIntervalAction = setInterval(function(){
-                    if(statusIterator <= statusesLeft){
-                      $('aside').prepend("<p style='border-bottom: 1px solid black; width: 100%'>"+feedData[statusIterator].text+"</p>");
-                      statusIterator++;
-                    }else{
-                      clearInterval(updateIntervalAction);
-                    }
-                  },updateInterval);
                 }
-              };
+                $($('aside p:hidden').get().reverse()).each(function(index, stat){
+                    setTimeout(function(){
+                      $(stat).fadeIn('slow');
+                    }, interValSpeed * index);
+                });
+              }
+              
             }
             
             var tf = new twitterTagFeed();
-            tf.query = "ruby";
+            tf.query = "somewherekokasi";
+            //$('aside').append(tf.generateUrl("ruby"));
             tf.run();
             
           });
