@@ -12,10 +12,50 @@
           aside{
             position: relative;
             width: 23%;
+            margin-left: 120px;
+            margin-top: 2px;
+            min-height: 700px;
+            max-height: 700px;
+            overflow: hidden;
+          }
+          aside p{
+            position: relative;
+            width: 95%;
+            margin: 0px auto 5px auto;
+            display: none;
+            padding: 2%;
+            font-size: 11px;
+            line-height: 22px;
+            background-color: rgba(148/199/182, 0.5);
+            border: 2px solid rgba(148/199/182, 0.2);
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -o-border-radius: 4px;
+            color: rgba(64/59/51, 1);
+          }
+          .hashtag{
+            color: rgba(211/100/59, 1);
+          }
+          nav{
+            position: relative;
+            width: 23%;
             border: 1px solid gray;
-            margin-left: 630px;
-            margin-top: 200px;
-            min-height: 400px;
+            margin-left: 120px;
+            margin-top: 70px;
+            min-height: 50px;
+          }
+          nav table tr{
+            width: 100%;
+          }
+          nav table td{
+            text-align: center;
+            line-height: 50ox;
+            width: 130px;
+            height: 50px;
+          }
+          nav table td:hover{
+            background: gray;
           }
         </STYLE> 
         
@@ -27,22 +67,27 @@
               
               var self = this;
               
-              this.states = {1:'running', 2:'stopped', 3:'paused'};
-              this.state = 2;
-              this.apiCallInterval = 10000;
+              this.apiCallInterval = 100000;
               this.query;
               this.sinceId;
               
               this.run = function(){
+                var firstUrl = self.generateUrl(self.query);
+                self.apiCall(firstUrl);
                 setInterval(function(){
                   var url = self.generateUrl(self.query);
                   self.apiCall(url);
                 }, this.apiCallInterval);
               };
               
+              this.setState = function(state){
+                this.state = this.states[state];
+              };
+              
               this.generateUrl = function(query){
-                var url = "http://search.twitter.com/search.json?&rpp=5&result_type=recent";
+                var url = "http://search.twitter.com/search.json?&rpp=10&result_type=recent";
                 var query = query.split(' ').join('');
+                query = query.toLowerCase();
                 var queryParams = query.split(",");
                 var qi;
                 url += "&q=";
@@ -66,25 +111,41 @@
                   success: function(response){
                     var feedData = response['results'];
                     if(feedData){
+                      feedData = self.filterRetweets(feedData);
                       self.statusRenderer(feedData.reverse());
                     }
                   }
                 });
               };
               
+              this.filterRetweets = function(statuses){
+                var si;
+                var sii;
+                var filteredStatuses = [];
+                for(si = 0; si < statuses.length; si++){
+                  for(sii = 0; sii < statuses.length; sii++){
+                    if(statuses[si].text == statuses[sii].text && si != sii){
+                      statuses.splice(si,1);
+                    }
+                  }
+                }
+                return statuses;
+              };
               
               this.statusRenderer = function(feedData){
                 var statIt;
                 var interValSpeed = (this.apiCallInterval / feedData.length)-300;
                 for(statIt = 0; statIt < feedData.length; statIt++){
                   var status = unescape(encodeURIComponent(feedData[statIt].text));
-                  $('aside').prepend("<p id='"+feedData[statIt].id+"' style='border-bottom: 1px solid black; width: 100%; display: none; font-size: 10px;'>"+status+"</p>");
+                  status = status.toLowerCase();
+                  status = status.replace("#"+self.query, "<span class='hashtag'>#"+self.query+"</span>")
+                  $('aside').prepend("<p id='"+feedData[statIt].id+"'>"+status+"</p>");
                   if((statIt+1) == feedData.length){
                   }
                 }
                 $($('aside p:hidden').get().reverse()).each(function(index, stat){
                     setTimeout(function(){
-                      $(stat).fadeIn('slow');
+                      $(stat).fadeIn(3700);
                     }, interValSpeed * index);
                 });
               }
@@ -92,9 +153,9 @@
             }
             
             var tf = new twitterTagFeed();
-            tf.query = "somewherekokasi";
-            //$('aside').append(tf.generateUrl("ruby"));
+            tf.query = "mornings";
             tf.run();
+            
             
           });
         </script> 
@@ -103,6 +164,15 @@
 
     <body>
     
+    <nav>
+      <table>
+        <tr>
+          <td id="run">run</td>
+          <td id="pause">pause</td>
+          <td id="stop">stop</td>
+        </tr>
+      </table>
+    </nav>
     <aside>
     </aside>
     
