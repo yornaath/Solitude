@@ -14,9 +14,16 @@
             width: 23%;
             margin-left: 120px;
             margin-top: 2px;
+            margin-bottom: 20px;
             min-height: 700px;
             max-height: 700px;
             overflow: hidden;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -o-border-radius: 4px;
+            padding: 2px;
+            background-color: rgba(255/255/255, 0.2);
           }
           aside p{
             position: relative;
@@ -34,29 +41,27 @@
             -o-border-radius: 4px;
             color: rgba(64/59/51, 1);
           }
-          .hashtag{
+          .queryHighlight{
             color: rgba(211/100/59, 1);
           }
-          nav{
-            position: relative;
-            width: 23%;
-            border: 1px solid gray;
-            margin-left: 120px;
-            margin-top: 70px;
-            min-height: 50px;
+          #tagInput{
+            width: 95%;
+            padding: 2%;
+            height: 20px;
+            line-height: 20px;
+            background-color: rgba(237/235/230, 1);
+            margin: 0px auto 2px auto;
+            color: rgba(64/59/51, 0.7);
+            border: 2px solid rgba(214/225/199, 1);
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -o-border-radius: 4px;
           }
-          nav table tr{
-            width: 100%;
+          #tagInput:focus{
+            outline: none;
           }
-          nav table td{
-            text-align: center;
-            line-height: 50ox;
-            width: 130px;
-            height: 50px;
-          }
-          nav table td:hover{
-            background: gray;
-          }
+            
         </STYLE> 
         
         <script type="text/javascript" >
@@ -67,7 +72,7 @@
               
               var self = this;
               
-              this.apiCallInterval = 100000;
+              this.apiCallInterval = 30000;
               this.query;
               this.sinceId;
               
@@ -86,20 +91,21 @@
               
               this.generateUrl = function(query){
                 var url = "http://search.twitter.com/search.json?&rpp=10&result_type=recent";
-                var query = query.split(' ').join('');
+                
                 query = query.toLowerCase();
                 var queryParams = query.split(",");
                 var qi;
                 url += "&q=";
                 for(qi = 0; qi < queryParams.length; qi++){
-                  url += "%23"+queryParams[qi];
+                  url += queryParams[qi];
                   if(qi < queryParams.length -1){
-                    url += "&";
+                    url += "+";
                   }
                 }
                 if(this.sinceId){
-                  url += "&since_id="+$('aside p:first-child').atr('id');
+                  url += "&since_id="+$('aside div p:first-child').atr('id');
                 }
+                //alert(url);
                 return url;
               };
               
@@ -138,12 +144,16 @@
                 for(statIt = 0; statIt < feedData.length; statIt++){
                   var status = unescape(encodeURIComponent(feedData[statIt].text));
                   status = status.toLowerCase();
-                  status = status.replace("#"+self.query, "<span class='hashtag'>#"+self.query+"</span>")
-                  $('aside').prepend("<p id='"+feedData[statIt].id+"'>"+status+"</p>");
+                  var queryWords = (self.query.replace(",", " ")).split(" ");
+                  var qwi;
+                  for(qwi = 0; qwi < queryWords.length; qwi++){
+                    status = status.replace(queryWords[qwi], "<span class='queryHighlight'>"+queryWords[qwi]+"</span>")
+                  }
+                  $('aside div').prepend("<p id='"+feedData[statIt].id+"'>"+status+"</p>");
                   if((statIt+1) == feedData.length){
                   }
                 }
-                $($('aside p:hidden').get().reverse()).each(function(index, stat){
+                $($('aside div p:hidden').get().reverse()).each(function(index, stat){
                     setTimeout(function(){
                       $(stat).fadeIn(3700);
                     }, interValSpeed * index);
@@ -153,7 +163,7 @@
             }
             
             var tf = new twitterTagFeed();
-            tf.query = "mornings";
+            tf.query = "wonderfull evening";
             tf.run();
             
             
@@ -164,16 +174,9 @@
 
     <body>
     
-    <nav>
-      <table>
-        <tr>
-          <td id="run">run</td>
-          <td id="pause">pause</td>
-          <td id="stop">stop</td>
-        </tr>
-      </table>
-    </nav>
     <aside>
+      <section id="tagInput" contenteditable="true"></section>
+      <div></div>
     </aside>
     
     
