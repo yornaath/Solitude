@@ -82,32 +82,19 @@ aside{
 	outline: none;
 }
 
-#menu {
-  position: absolute;
-	height: 40px;
-	width: 15px;
-  border-left: 1px solid #9BC2BF;
-	background: rgba(169/199/197, 1) url(../grphx/menuslider.png);
+#document nav {
+  position: relative;
+	height: 30px;
+	width: 23%;
+	margin-left: 75%;
 	overflow: hidden;
-	-moz-border-radius: 0px 2px 2px 0px;
-  border-radius: 0px 2px 2px 0px;
 }
-#menu:hover{
-  -webkit-transition: width .40s ease;
-  -moz-transition: width .40s ease;
-  -o-transition: width .40s ease;
-  transition: width .40s ease;
-  width: 180px;
-  background: rgba(169/199/189, 1);
-  -webkit-border-radius: 0px 2px 2px 0px;
-  -o-border-radius: 0px 2px 2px 0px;
-}
+
 #menuButtons{
 	margin-left: auto;
 	margin-right: auto;
 	border-collapse: separate;
-	border-spacing: 15px 0px;
-	font-size: 11px;
+	border-spacing: 5px 0px;
 }
 
 
@@ -117,26 +104,33 @@ aside{
 }
 
 .button{
-	height: 32px;
+  font-size: 11px;
+	height: 40px;
 	width: 32px;
 	margin-top: 5px;
 	color: #ededed;
 	text-align: center;
 	font-family: arial;
+	padding: 5px;
 	letter-spacing: 2px;
-	line-height: 30px;
+	line-height: 18px;
+	background: rgba(169/199/197, 1);
+	border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  -o-border-radius: 4px 4px 4px 4px;
 }
 .button:hover{
 	cursor: pointer;
-  font-weight: bold;
+  height: 50px;
   -webkit-transition: .25s ease;
   -moz-transition: .25s ease;
   -o-transition: .25s ease;
   transition: .25s ease;
-	-webkit-transform: scale(1.5);
-  -moz-transform: scale(1.5);
-  -o-transform: scale(1.5);
-  transform: scale(1.5);
+	-webkit-transform: height(1.5);
+  -moz-transform: height(1.5);
+  -o-transform: height(1.5);
+  transform: height(1.5);
 }
 
 
