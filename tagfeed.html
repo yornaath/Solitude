@@ -23,7 +23,7 @@
             -webkit-border-radius: 4px;
             -o-border-radius: 4px;
             padding: 2px;
-            background-color: rgba(255/255/255, 0.2);
+            background-color: rgba(255/255/255, 0.05);
           }
           aside p{
             position: relative;
@@ -33,7 +33,6 @@
             padding: 2%;
             font-size: 11px;
             line-height: 22px;
-            background-color: rgba(148/199/182, 0.5);
             border: 2px solid rgba(148/199/182, 0.2);
             border-radius: 4px;
             -moz-border-radius: 4px;
@@ -41,6 +40,26 @@
             -o-border-radius: 4px;
             color: rgba(64/59/51, 1);
             word-wrap: break-word;
+          }
+          aside p:hover{
+            cursor: pointer;
+          }
+          aside .activeStatus{
+            background-color: rgba(148/199/182, 0.2);
+          }
+          aside .activeStatus:hover{
+            background-color: rgba(148/199/182, 0.8);
+          }
+          aside .lockedStatus{
+            background-color: rgba(148/199/182, 0.8);
+          }
+          aside .lockedStatus:hover{
+            color: rgba(237/235/230, 1);
+            background-color: rgba(211/100/59, 0.8);
+          }
+          aside .transitionStatus{
+            background-color: rgba(148/199/182, 1);
+            width: 94.5%;
           }
           .queryHighlight{
             color: rgba(211/100/59, 1);
@@ -50,10 +69,11 @@
             padding: 2%;
             height: 20px;
             line-height: 20px;
+            font-size: 16px;
             background-color: rgba(237/235/230, 1);
             margin: 0px auto 2px auto;
             color: rgba(64/59/51, 0.7);
-            border: 2px solid rgba(214/225/199, 1);
+            border: 2px solid rgba(64/59/51, 0.1);
             border-radius: 4px;
             -moz-border-radius: 4px;
             -webkit-border-radius: 4px;
@@ -71,7 +91,7 @@
             function twitterFeed(){
               
               var self = this;
-              self.streamUpdateInterval = 16000;
+              self.streamUpdateInterval = 20000;
               self.requestsPrSearch = 10;
               self.statusQue = [];
               self.streamer;
@@ -96,18 +116,20 @@
                 for(qwi = 0; qwi < queryWords.length; qwi++){
                   status.text = status.text.replace(queryWords[qwi], "<span class='queryHighlight'>"+queryWords[qwi]+"</span>")
                 }
-                statusView = "<p id='"+status.id+"'>"+status.text+"</p>";
+                statusView = "<p class='activeStatus' id='"+status.id+"'>"+status.text+"</p>";
                 $('aside #status_stream').prepend(statusView);
                 $('aside #status_stream p:hidden').fadeIn(3000);
               }
               
               self.twitterSearch = function(query){
+                if(query){
+                  self.query = query;
+                }
                 self.statusQue = [];
                 $('aside #status_stream p:hidden').remove();
                 if(self.streamer){
                   clearInterval(self.streamer);
                 }
-                self.query = query;
                 self.sinceId = undefined;
                 var url = self.generateUrl(self.query);
                 self.apiCall(url);
@@ -128,7 +150,7 @@
                   }
                 }
                 if(self.sinceId){
-                  url += "&since_id="+$('aside div p:first-child').atr('id');
+                  url += "&since_id="+$('aside #status_stream p:first-child').atr('id');
                 }
                 return url;
               }
@@ -176,10 +198,36 @@
               var query = $(this).val();
               tf.twitterSearch(query); 
             });
+            
             $('#tagInput').keyup(function(key) {
               if(key.keyCode == '13'){
                 $(this).blur();
               }
+            });
+            
+            $('aside #status_stream p').live('click', function() {
+              var currentPosition = $(this).position();
+              var wantedPosition = $('aside #status_hold').position();
+              $(this).css({'position': 'absolute', 'top': currentPosition.top, 'left': currentPosition.left});
+              $(this).removeClass($(this).attr('class')).addClass('transitionStatus');
+              $(this).animate({
+                'top': wantedPosition.top,
+                'left': wantedPosition.left
+              }, 400, function(){
+                $(this).detach();
+                $(this).bind('click', function() {
+                  $(this).css({'z-index': 100});
+                  $(this).animate({
+                    'margin-left': -400,
+                    'opacity': 0
+                  }, 400, function(){
+                    $(this).remove();
+                  });
+                });
+                $(this).removeClass($(this).attr('class')).addClass('lockedStatus');
+                $(this).css({'position': 'relative', 'left': '0px', 'top': '0px'});
+                $('aside #status_hold').prepend($(this));
+              });
             });
             
           });
@@ -188,10 +236,9 @@
     </head> 
 
     <body>
-    <div id='pause' style='height: 20px; width: 50px; background: gray;'>pause</div>
     <aside>
       <input id="tagInput" type='text'/>
-      <div id='status_hold'></div>
+      <div class='hello' id='status_hold'></div>
       <div id='status_stream'></div>
     </aside>
     
