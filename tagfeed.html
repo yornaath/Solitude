@@ -173,8 +173,13 @@
             var tf = new twitterFeed();
 
             $('#tagInput').blur(function(){
-              var query = $(this).html();
+              var query = $(this).val();
               tf.twitterSearch(query); 
+            });
+            $('#tagInput').keyup(function(key) {
+              if(key.keyCode == '13'){
+                $(this).blur();
+              }
             });
             
           });
@@ -185,7 +190,7 @@
     <body>
     <div id='pause' style='height: 20px; width: 50px; background: gray;'>pause</div>
     <aside>
-      <section id="tagInput" contenteditable="true"></section>
+      <input id="tagInput" type='text'/>
       <div id='status_hold'></div>
       <div id='status_stream'></div>
     </aside>
