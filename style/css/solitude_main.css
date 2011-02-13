@@ -46,7 +46,7 @@ aside{
 	margin: 0px 0px 2px 0px;
 	border-width: 1px 1px 0px 1px;
   border-style: solid;
-  border-color: #d3d3d3;
+  border-color: rgba(64/59/51, 0.14);
 	line-height: 1.8;
 	color: #3c3c3c;
 	padding: 5px;
@@ -68,7 +68,7 @@ aside{
 	overflow: hidden;
 	border-width: 0px 1px 1px 1px;
   border-style: solid;
-  border-color: #d3d3d3;
+  border-color: rgba(64/59/51, 0.14);
 	line-height: 2;
 	color: #3c3c3c;
 	padding: 5px;

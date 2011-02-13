@@ -12,32 +12,32 @@
           aside{
             position: relative;
             width: 23%;
+            padding: 5px;
             margin-left: 120px;
             margin-top: 2px;
             margin-bottom: 20px;
             min-height: 700px;
             max-height: 700px;
             overflow: hidden;
-            border-radius: 4px;
-            -moz-border-radius: 4px;
-            -webkit-border-radius: 4px;
-            -o-border-radius: 4px;
-            padding: 2px;
-            background-color: rgba(255/255/255, 0.05);
+            border-radius: 2px;
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            -o-border-radius: 2px;
+            background-color: rgba(255/255/255, 0.4);
           }
           aside p{
             position: relative;
-            width: 95%;
-            margin: 0px auto 5px auto;
+            width: 96%;
+            margin: 0px 0px 5px 0px;
             display: none;
             padding: 2%;
             font-size: 11px;
             line-height: 22px;
-            border: 2px solid rgba(148/199/182, 0.2);
-            border-radius: 4px;
-            -moz-border-radius: 4px;
-            -webkit-border-radius: 4px;
-            -o-border-radius: 4px;
+            border: 1px solid rgba(148/199/182, 0.1);
+            border-radius: 2px;
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            -o-border-radius: 2px;
             color: rgba(64/59/51, 1);
             word-wrap: break-word;
           }
@@ -48,10 +48,10 @@
             background-color: rgba(148/199/182, 0.2);
           }
           aside .activeStatus:hover{
-            background-color: rgba(148/199/182, 0.8);
+            background-color: rgba(110/178/179, 0.8);
           }
           aside .lockedStatus{
-            background-color: rgba(148/199/182, 0.8);
+            background-color: rgba(110/178/179, 0.8);
           }
           aside .lockedStatus:hover{
             color: rgba(237/235/230, 1);
@@ -65,19 +65,19 @@
             color: rgba(211/100/59, 1);
           }
           #tagInput{
-            width: 95%;
+            width: 96%;
             padding: 2%;
             height: 20px;
             line-height: 20px;
             font-size: 16px;
             background-color: rgba(237/235/230, 1);
-            margin: 0px auto 2px auto;
+            margin: 0px 0px 2px 0px;
             color: rgba(64/59/51, 0.7);
-            border: 2px solid rgba(64/59/51, 0.1);
-            border-radius: 4px;
-            -moz-border-radius: 4px;
-            -webkit-border-radius: 4px;
-            -o-border-radius: 4px;
+            border: 1px solid rgba(64/59/51, 0.1);
+            border-radius: 2px;
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            -o-border-radius: 2px;
           }
           #tagInput:focus{
             outline: none;
@@ -91,7 +91,7 @@
             function twitterFeed(){
               
               var self = this;
-              self.streamUpdateInterval = 20000;
+              self.streamUpdateInterval = 3000;
               self.requestsPrSearch = 10;
               self.statusQue = [];
               self.streamer;
