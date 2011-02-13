@@ -1,3 +1,114 @@
+function twitterTagFeed(){
+              
+  var self = this;
+
+  self.apiCallInterval = 15000;
+  self.query;
+  self.sinceId;
+  self.main;
+  self.subMain = [];
+  self.state;
+  self.states = {1:'running', 2:'paused', 3:'stopped'};
+
+  self.run = function(){
+    var firstUrl = self.generateUrl(self.query);
+    self.apiCall(firstUrl);
+    var mp = setInterval(function(){
+      if(self.state == 1){
+        var url = self.generateUrl(self.query);
+        self.apiCall(url);
+      }
+    }, self.apiCallInterval);
+    self.main = mp;
+  };
+
+  self.pause = function(){
+    self.state = 2;
+    if(self.subMain.length > 0){
+      var si;
+      for(si = 0; si < self.subMain.length; si++){
+        clearTimeout(self.subMain[si]);
+      }
+    }
+    $('aside #status_stream p:hidden').remove();
+  };
+
+  self.generateUrl = function(query){
+    var url = "http://search.twitter.com/search.json?&rpp=10&result_type=recent";
+    
+    query = query.toLowerCase();
+    var queryParams = query.split(",");
+    var qi;
+    url += "&q=";
+    for(qi = 0; qi < queryParams.length; qi++){
+      url += queryParams[qi];
+      if(qi < queryParams.length -1){
+        url += "+";
+      }
+    }
+    if(self.sinceId){
+      url += "&since_id="+$('aside div p:first-child').atr('id');
+    }
+    return url;
+  };
+
+  self.apiCall = function(url){
+    $.ajax({
+      url: url,
+      crossDomain: true,
+      dataType: "jsonp",
+      success: function(response){
+        var feedData = response['results'];
+        if(feedData){
+          feedData = self.filterRetweets(feedData);
+          self.statusRenderer(feedData.reverse());
+        }
+      }
+    });
+  };
+
+  self.filterRetweets = function(statuses){
+    var si;
+    var sii;
+    var filteredStatuses = [];
+    for(si = 0; si < statuses.length; si++){
+      for(sii = 0; sii < statuses.length; sii++){
+        if(statuses[si].text == statuses[sii].text && si != sii){
+          statuses.splice(si,1);
+        }
+      }
+    }
+    return statuses;
+  };
+
+  self.statusRenderer = function(feedData){
+    var statIt;
+    var interValSpeed = (self.apiCallInterval / feedData.length)-300;
+    for(statIt = 0; statIt < feedData.length; statIt++){
+      var status = unescape(encodeURIComponent(feedData[statIt].text));
+      status = status.toLowerCase();
+      var queryWords = (self.query.replace(",", " ")).split(" ");
+      var qwi;
+      for(qwi = 0; qwi < queryWords.length; qwi++){
+        status = status.replace(queryWords[qwi], "<span class='queryHighlight'>"+queryWords[qwi]+"</span>")
+      }
+      $('aside #status_stream').prepend("<p id='"+feedData[statIt].id+"'>"+status+"</p>");
+      if((statIt+1) == feedData.length){
+      }
+    }
+    $($('aside #status_stream p:hidden').get().reverse()).each(function(index, stat){
+        var to = setTimeout(function(){
+          $(stat).fadeIn(3700);
+        }, interValSpeed * index);
+        self.subMain.push(to);
+    });
+  }
+
+}
+
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"> 
     <head> 
