@@ -90,24 +90,27 @@
           
             function twitterFeed(){
               
-              var self = this;
-              self.streamUpdateInterval = 3000;
-              self.requestsPrSearch = 10;
-              self.statusQue = [];
-              self.streamer;
-              self.query;
-              self.sinceId;
+              var self = this; //capturing this classobject as var
+              self.streamUpdateInterval = 3000; //the interval in wich the que is checked for new statuses
+              self.requestsPrSearch = 10; //number of statuses to fetch per api call
+              self.statusQue = []; //array holding qued statuses
+              self.streamer; //captures the started setInterval in runStreamer()
+              self.query;//holds the raw query the user types
+              self.sinceId;//the newest statuses id, discriminate on this to find new statuses
               
+							//starts the streamer
               self.runStreamer = function(){
+								//sets a interval in wich the statusque is checked
                 self.streamer = setInterval(function(){
-                  if(self.statusQue.length > 0){ 
-                    self.renderStatus(self.statusQue.pop());
-                  }else if(self.query){
-                    self.twitterSearch();
+                  if(self.statusQue.length > 0){//checkes that statusque has statuses 
+                    self.renderStatus(self.statusQue.pop());//TRUE: pops status from end of array and renders to stream
+                  }else if(self.query){//FALSE: if query is set 
+                    self.twitterSearch();//TRUE: new twitterSearch()
                   }
                 }, self.streamUpdateInterval);
               };
               
+							//takes a status and renders it to stream
               self.renderStatus = function(status){
                 var statusView;
                 status.text = (unescape(encodeURIComponent(status.text))).toLowerCase();
@@ -121,6 +124,8 @@
                 $('aside #status_stream p:hidden').fadeIn(3000);
               }
               
+							//sets query, clears que, removes hidden ellements in stream, clears sinceId since it is useless on new search,
+							//generates url, calls twitter api and restarts streamer
               self.twitterSearch = function(query){
                 if(query){
                   self.query = query;
@@ -136,6 +141,7 @@
                 self.runStreamer();
               };
               
+							//takes the users query and generates a url used to query the twitter search api with
               self.generateUrl = function(query){
                 var url = "http://search.twitter.com/search.json?&rpp=10&result_type=recent";
                 
