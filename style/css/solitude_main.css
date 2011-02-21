@@ -131,21 +131,21 @@ border-radius: 4px 4px 4px 4px;
 -moz-border-radius: 4px 4px 4px 4px;
 -webkit-border-radius: 4px 4px 4px 4px;
 -o-border-radius: 4px 4px 4px 4px;
--webkit-transform: scale(0.8);
--moz-transform: scale(0.8);
--o-transform: scale(0.8);
-transform: scale(0.8);
+-webkit-transform: scale(0.75);
+-moz-transform: scale(0.75);
+-o-transform: scale(0.75);
+transform: scale(0.75);
 }
 .button:hover {
 cursor: pointer;
--webkit-transition: .25s ease;
--moz-transition: .25s ease;
--o-transition: .25s ease;
-transition: .25s ease;
--webkit-transform: scale(1.2);
--moz-transform: scale(1.2);
--o-transform: scale(1.2);
-transform: scale(1.2);
+-webkit-transition: .35s ease;
+-moz-transition: .35s ease;
+-o-transition: .35s ease;
+transition: .35s ease;
+-webkit-transform: scale(1);
+-moz-transform: scale(1);
+-o-transform: scale(1);
+transform: scale(1);
 }
 
 
@@ -160,8 +160,8 @@ margin-left: 0px;
 margin-top: 2px;
 margin-bottom: 20px;
 margin-right: 10px;
-min-height: 735px;
-max-height: 735px;
+min-height: 739px;
+max-height: 739px;
 overflow: hidden;
 border-radius: 2px;
 -moz-border-radius: 2px;
@@ -195,11 +195,11 @@ aside .activeStatus:hover {
 background-color: rgba(110/178/179, 0.8);
 }
 aside .lockedStatus {
-background-color: rgba(110/178/179, 0.8);
+background-color: rgba(128/185/223, 0.8);
 }
 aside .lockedStatus:hover {
 color: rgba(237/235/230, 1);
-background-color: rgba(211/100/59, 0.8);
+background-color: rgba(211/100/59, 0.6);
 }
 aside .transitionStatus {
 background-color: rgba(148/199/182, 1);
@@ -273,6 +273,29 @@ background: -webkit-gradient(radial, center center, 0, center center, 700, from(
 	width: 70%;
 	border-right: 1px solid rgba(50/50/50, 0.1);
 }
+.docDestroy{
+	background-image: url(../grphx/deleteFileIcon.png);
+	background-repeat:no-repeat;
+	background-position:center;
+	-webkit-opacity: 0.5;
+	-o-opacity: 0.5;
+	-moz-opacity: 0.5;
+	width: 40px;
+}
+.docDestroy:hover{
+	cursor: pointer;
+	-webkit-opacity: 1;
+	-o-opacity: 1;
+	-moz-opacity: 1;
+	-webkit-transition: .25s ease;
+	-moz-transition: .25s ease;
+	-o-transition: .25s ease;
+	transition: .25s ease;
+	-webkit-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
+}
 
 #introduction{
 	padding: 10px;
@@ -310,4 +333,9 @@ background: -webkit-gradient(radial, center center, 0, center center, 700, from(
 }
 
 
-
+#treat{
+	display: block;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+}
