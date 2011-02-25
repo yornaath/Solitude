@@ -175,7 +175,7 @@ width: 96%;
 margin: 0px 0px 5px 0px;
 display: none;
 padding: 2%;
-font-size: 11px;
+font-size: 10px;
 line-height: 22px;
 border: 1px solid rgba(148/199/182, 0.1);
 border-radius: 2px;
@@ -192,17 +192,37 @@ aside .activeStatus {
 background-color: rgba(148/199/182, 0.2);
 }
 aside .activeStatus:hover {
-background-color: rgba(110/178/179, 0.8);
+background-image: 
+url(../grphx/pin.png),
+-webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.23, rgb(149/196/225)),
+    color-stop(0.89, rgb(172/207/229))
+);
+background-repeat:no-repeat;
+background-position:bottom right;
 }
 aside .lockedStatus {
 background-color: rgba(128/185/223, 0.8);
 }
 aside .lockedStatus:hover {
-color: rgba(237/235/230, 1);
-background-color: rgba(211/100/59, 0.6);
+	background-image: 
+	url(../grphx/x.png),
+	-webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.23, rgb(212/135/104)),
+	    color-stop(0.89, rgb(221/156/130))
+	);
+	background-repeat:no-repeat;
+	background-position:bottom right;
+	border: 1px solid rgba(223/123/69, 0.8);
 }
 aside .transitionStatus {
-background-color: rgba(148/199/182, 1);
+background-color: rgba(128/185/223, 0.5);
 width: 92.1%;
 }
 .queryHighlight {
@@ -331,7 +351,18 @@ background: -webkit-gradient(radial, center center, 0, center center, 700, from(
 #warning span{
 	margin: 0px 2px 0px 2px;
 }
-
+#warning .option{
+	background-color: rgba(208/195/173, 0.6);
+	border-radius: 2px 2px 2px 2px;
+	-moz-border-radius: 2px 2px 2px 2px;
+	-webkit-border-radius: 2px 2px 2px 2px;
+	-o-border-radius: 2px 2px 2px 2px;
+	padding: 2px 4px 2px 4px;
+}
+#warning .option:hover{
+	cursor: pointer;
+	background-color: rgba(208/195/173, 1);
+}
 
 #treat{
 	display: block;
