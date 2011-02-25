@@ -5,7 +5,12 @@ src: local('☺'), url('bebas___-webfont.woff') format('woff'), url('bebas___-we
 font-weight: normal;
 font-style: normal;
 }
-
+a{
+	color: rgb(149/196/225);
+}
+a:hover;{
+	color: rgb(142/196/225);
+}
 html{
 	background: none;
 }
