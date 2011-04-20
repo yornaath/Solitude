@@ -1,6 +1,6 @@
 {
   "name": "Solitude",
-  "description": "A distraction free offline writing tool",
+  "description": "A clutter less writing tool for writers who want some inspiration ala tweets while they write",
   "version": "0.0.4",
   "app": {
     "launch": {
