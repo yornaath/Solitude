@@ -63,7 +63,8 @@ function($) {
     },
     docBrowser: function(allDocs) {
       $('.shadowOverlay').remove();
-      $("body").append("<div class='shadowOverlay'><div id='docbrowser'><table id='docBrowserDocs'></table></div></div>");
+      $("body").append("<div class='shadowOverlay'><div id='docbrowser'><p class='dragger'>. . .</p><table id='docBrowserDocs'></table></div></div>");
+			$("#docbrowser").draggable();
       $('.shadowOverlay').fadeIn(400);
       if (allDocs.length != 0) {
         for (docN in allDocs) {

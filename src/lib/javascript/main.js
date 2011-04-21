@@ -92,18 +92,20 @@ function($, Gears, DocController, TwitterFeedController) {
       $("#docBrowserDocs tr .docDestroy").live('click',
       function() {
         var id = $(this).attr('id');
-        $("#" + id).fadeOut(400,
-        function() {
-          var success = docController.Destroy(id);
-          $(this).remove();
-          if ($("#docBrowserDocs tbody").html() == "") {
-            $('.shadowOverlay').fadeOut(400,
-            function() {
-              $(this).remove();
-              Gears.warning("Successfully deleted");
-            });
-          }
-        });
+				var success = docController.Destroy(id);
+				if(success){
+					Gears.warning("Successfully deleted");
+					$("#" + id).fadeOut(400,
+	        function() {
+	          $(this).remove();
+	          if ($("#docBrowserDocs tbody").html() == "") {
+	            $('.shadowOverlay').fadeOut(400,
+	            function() {
+	              $(this).remove();
+	            });
+	          }
+	        });
+				}
       });
 
       //Handles: clicking outside popup.
