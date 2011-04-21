@@ -28,10 +28,7 @@ function($, Gears, DocController, TwitterFeedController) {
       //Handles: Clicking the save doc icon
       //Action: Saves the document.
       $('#save').click(function() {
-        var success = docController.Save();
-        if (success) {
-          Gears.warning("Successfully saved");
-        }
+        docController.Save();
       });
 
       //Handles: Clicking the new doc icon.
@@ -81,10 +78,7 @@ function($, Gears, DocController, TwitterFeedController) {
       function() {
         var docId = $(this).parent().attr('id');
         docController.Open(docId);
-        $('.shadowOverlay').fadeOut(400,
-        function() {
-          $(this).remove();
-        });
+        Gears.closePopup();
       });
 
       //Handles: clicking trashcan in docbrowser
@@ -92,32 +86,24 @@ function($, Gears, DocController, TwitterFeedController) {
       $("#docBrowserDocs tr .docDestroy").live('click',
       function() {
         var id = $(this).attr('id');
-				var success = docController.Destroy(id);
-				if(success){
-					Gears.warning("Successfully deleted");
-					$("#" + id).fadeOut(400,
-	        function() {
-	          $(this).remove();
-	          if ($("#docBrowserDocs tbody").html() == "") {
-	            $('.shadowOverlay').fadeOut(400,
-	            function() {
-	              $(this).remove();
-	            });
-	          }
-	        });
-				}
+        if (docController.Destroy(id)) {
+          $("#" + id).fadeOut(400,
+          function() {
+            $(this).remove();
+            if ($("#docBrowserDocs tbody").html() == "") {
+              Gears.closePopup();
+            }
+          });
+        }
       });
 
       //Handles: clicking outside popup.
       //Action: close the popup
       $(".shadowOverlay").live('click',
-      function(e) {
-        var $target = $(e.target);
+      function(event) {
+        var $target = $(event.target);
         if ($target.attr("class") == "shadowOverlay") {
-          $(this).fadeOut(400,
-          function() {
-            $(this).remove();
-          });
+          Gears.closePopup();
         }
       });
 

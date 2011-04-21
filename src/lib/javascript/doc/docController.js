@@ -2,7 +2,6 @@ define(['jquery', '../util/gears', '../doc/docModel'],
 function($, Gears, Doc) {
   return function DocController() {
     //DOCCONTROLLER START CODE
-
     var self = this;
     var currentDoc;
 
@@ -16,9 +15,12 @@ function($, Gears, Doc) {
       }
       currentDoc.title = t;
       currentDoc.content = c;
-      var success = currentDoc.Save();
-      self.saved = true;
-      return success;
+      if (currentDoc.Save()) {
+        Gears.warning("Successfully saved");
+				self.saved = true;
+      } else {
+				Gears.warning("Could not save");
+			}
     }
 
     this.New = function() {
@@ -26,6 +28,7 @@ function($, Gears, Doc) {
       $('#content').html('');
       self.saved = true;
       currentDoc = undefined;
+      Gears.warning("New document");
     }
 
     this.Index = function() {
@@ -38,13 +41,18 @@ function($, Gears, Doc) {
     };
 
     this.Destroy = function(id) {
-      var success = false;
+			var success = false
       if (currentDoc) {
-        success = currentDoc.Destroy(id);
+        if (currentDoc.Destroy(id)) {
+          Gears.warning("Successfully deleted");
+					success = true
+        } else {
+          Gears.warning("Could not delete");
+        }
       } else {
         currentDoc = new Doc();
       };
-      return success;
+			return success;
     };
 
     this.Open = function(docId) {
