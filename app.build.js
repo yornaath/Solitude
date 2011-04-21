@@ -1,26 +1,14 @@
 ({
   baseUrl: "./",
-  dir: "/build",
-  appDir: "/src",
+  dir: "./build/Solitude",
+  appDir: "./src",
   skipModuleInsertion: false,
 
-  modules: [
-  {
-    name: "main",
-    include: [
-    "jquery",
-    "gears",
-    "docController",
-    "twitterFeedController"
-    ]
-  }
-  ],
-
   paths: {
-    "docController": "/lib/javascript/doc/docController",
-		"docModel": "/lib/javascript/doc/docModel",
-		"twitterFeed": "/lib/javascript/twitterFeed/twitterFeed",
-		"twitterFeedController": "/lib/javascript/twitterFeed/twitterFeedController"
-		"gears": "/lib/javascript/util/gears"
+		"main": "lib/javascript/main",
+    "doc": "lib/javascript/doc",
+    "twitterFeed": "lib/javascript/twitterFeed",
+    "util": "lib/javascript/util",
+		"jquery": "lib/javascript/jquery"
   }
 })

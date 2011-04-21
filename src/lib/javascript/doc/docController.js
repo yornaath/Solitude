@@ -1,4 +1,4 @@
-define(['jquery', 'util/gears', 'doc/docModel'],
+define(['jquery', '../util/gears', '../doc/docModel'],
 function($, Gears, Doc) {
   return function DocController() {
     //DOCCONTROLLER START CODE
