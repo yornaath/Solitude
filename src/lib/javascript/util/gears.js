@@ -3,13 +3,19 @@ function($) {
 
   var Gears = {
     showPopup: function(content) {
-      $("body").append("<div class='shadowOverlay'><div id='popup'></div></div>");
+      $("#popup").show();
       $('.shadowOverlay').fadeIn(400);
       $('#popup').html("<img id='closePopup' style='float: right; cursor: pointer;' src='style/grphx/x.png'>" + content);
       $("#closePopup").click(function() {
-        $('.shadowOverlay').fadeOut(400,
-        function() {
-          $('.shadowOverlay').remove();
+        Gears.closePopup(event);
+      });
+    },
+    closePopup: function(event) {
+      var shadowOverlay = $(".shadowOverlay");
+      shadowOverlay.fadeOut(400,
+      function() {
+        $(this).children().each(function() {
+          $(this).hide();
         });
       });
     },
@@ -22,24 +28,41 @@ function($) {
       }
     },
     warning: function(message, options) {
-      $('#menu').prepend("<div id='warning'></div>");
-      $('#warning').fadeIn(400);
-      $('#warning').prepend(message);
+			if($("#warning").length == 0){
+				$('#menu').prepend("<div id='warning'></div>");
+				$('#warning').fadeIn(400);
+				$('#warning').prepend(message);
+			} else {
+				$('#warning').html("");
+				$('#warning').prepend(message);
+				var oriColor = $('#warning').css("background-color");
+				$('#warning').animate({
+					'background-color': '#D87144'
+				}, 200, function() {
+					$(this).animate({
+						'background-color': oriColor
+					}, 200, function() {
+
+					});
+				});
+			}
       if (!options) {
-        setTimeout(function() {
-          $('#warning').fadeOut(400,
-          function() {
-            $('#warning').remove();
-          });
-        },
-        2000);
+				if(!this.removeTimer){
+					this.removeTimer = setTimeout(function() {
+	          Gears.removeWarning();
+	        },
+	        2000);
+				} else {
+					clearTimeout(this.removeTimer);
+					this.removeTimer = setTimeout(function() {
+	          Gears.removeWarning();
+	        },
+	        2000);
+				}
       } else {
+				if(this.removeTimer) clearTimeout(this.removeTimer);
         options['cancel'] = function() {
-          $('#warning').fadeOut(400,
-          function() {
-            $('#warning').remove();
-          });
-          $('.option').die('click');
+          Gears.removeWarning();
         };
         for (key in options) {
           $('#warning').append("<span id='" + key + "' class='option'>" + key + "</span>");
@@ -47,24 +70,21 @@ function($) {
         $('.option').live('click',
         function() {
           options[$(this).attr('id')]();
-          $('#warning').fadeOut(400,
-          function() {
-            options['cancel']();
-          });
+          Gears.removeWarning();
+					$('.option').die('click');
         });
-        if (!options) {
-          $('#warning').fadeOut(400,
-          function() {
-            $('#warning').remove();
-          });
-          $('.option').die('click');
-        }
       }
     },
+		removeWarning: function() {
+			$('#warning').fadeOut(400,
+      function() {
+        $(this).remove();
+      });
+		},
     docBrowser: function(allDocs) {
-      $('.shadowOverlay').remove();
-      $("body").append("<div class='shadowOverlay'><div id='docbrowser'><p class='dragger'>. . .</p><table id='docBrowserDocs'></table></div></div>");
-			$("#docbrowser").draggable();
+      $("#docbrowser").draggable();
+      $("#docbrowser").show();
+      $("#docBrowserDocs").html("");
       $('.shadowOverlay').fadeIn(400);
       if (allDocs.length != 0) {
         for (docN in allDocs) {
@@ -76,11 +96,8 @@ function($) {
         };
       } else {
         $("#docBrowserDocs").append("<p style='width: 100%; text-align: center; cursor: pointer;'>No docs in local storage. Click to close</p>");
-        $("#docBrowserDocs p").click(function() {
-          $(".shadowOverlay").fadeOut(400,
-          function() {
-            $(this).remove();
-          });
+        $("#docBrowserDocs p").click(function(event) {
+          Gears.closePopup(event);
         });
       }
     },
