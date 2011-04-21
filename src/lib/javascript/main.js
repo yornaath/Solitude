@@ -28,7 +28,10 @@ function($, Gears, DocController, TwitterFeedController) {
       //Handles: Clicking the save doc icon
       //Action: Saves the document.
       $('#save').click(function() {
-        docController.Save();
+        var success = docController.Save();
+				if(success){
+					Gears.warning("Successfully saved");	
+				}
       });
 
       //Handles: Clicking the new doc icon.
@@ -91,12 +94,13 @@ function($, Gears, DocController, TwitterFeedController) {
         var id = $(this).attr('id');
         $("#" + id).fadeOut(400,
         function() {
-          docController.Destroy(id);
+          var success = docController.Destroy(id);
           $(this).remove();
           if ($("#docBrowserDocs tbody").html() == "") {
             $('.shadowOverlay').fadeOut(400,
             function() {
               $(this).remove();
+							Gears.warning("Successfully deleted");
             });
           }
         });

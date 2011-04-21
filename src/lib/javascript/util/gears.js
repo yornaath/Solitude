@@ -22,27 +22,43 @@ function($) {
       }
     },
     warning: function(message, options) {
-      options['cancel'] = function() {
-        $('#warning').fadeOut(400,
-        function() {
-          $('#warning').remove();
-        });
-        $('.option').die('click');
-      };
       $('#menu').prepend("<div id='warning'></div>");
       $('#warning').fadeIn(400);
-      for (key in options) {
-        $('#warning').append("<span id='" + key + "' class='option'>" + key + "</span>");
-      }
-      $('.option').live('click',
-      function() {
-        options[$(this).attr('id')]();
-        $('#warning').fadeOut(400,
-        function() {
-          options['cancel']();
-        });
-      });
       $('#warning').prepend(message);
+      if (!options) {
+				setTimeout(function() {
+					$('#warning').fadeOut(400,
+	        function() {
+	          $('#warning').remove();
+	        });
+				}, 2000);
+      } else {
+        options['cancel'] = function() {
+          $('#warning').fadeOut(400,
+          function() {
+            $('#warning').remove();
+          });
+          $('.option').die('click');
+        };
+        for (key in options) {
+          $('#warning').append("<span id='" + key + "' class='option'>" + key + "</span>");
+        }
+        $('.option').live('click',
+        function() {
+          options[$(this).attr('id')]();
+          $('#warning').fadeOut(400,
+          function() {
+            options['cancel']();
+          });
+        });
+        if (!options) {
+          $('#warning').fadeOut(400,
+          function() {
+            $('#warning').remove();
+          });
+          $('.option').die('click');
+        }
+      }
     },
     docBrowser: function(allDocs) {
       $('.shadowOverlay').remove();

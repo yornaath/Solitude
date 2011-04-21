@@ -2,6 +2,7 @@ define(['jquery', '../util/gears', '../doc/docModel'],
 function($, Gears, Doc) {
   return function DocController() {
     //DOCCONTROLLER START CODE
+
     var self = this;
     var currentDoc;
 
@@ -15,8 +16,9 @@ function($, Gears, Doc) {
       }
       currentDoc.title = t;
       currentDoc.content = c;
-      currentDoc.Save();
+      var success = currentDoc.Save();
       self.saved = true;
+			return success;
     }
 
     this.New = function() {
@@ -34,14 +36,17 @@ function($, Gears, Doc) {
         return currentDoc.All();
       };
     };
+
     this.Destroy = function(id) {
+			var success = false;
       if (currentDoc) {
-        currentDoc.Destroy(id);
+        success = currentDoc.Destroy(id);
       } else {
         currentDoc = new Doc();
-        return currentDoc.Destroy(id);
       };
+			return success;
     };
+
     this.Open = function(docId) {
       if (currentDoc) {
         try {
@@ -62,6 +67,7 @@ function($, Gears, Doc) {
         $('#content').html(currentDoc.content);
       }
     };
+
     //DOCCONTROLLER END CODE
   }
 });
