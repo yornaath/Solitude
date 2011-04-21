@@ -26,12 +26,13 @@ function($) {
       $('#warning').fadeIn(400);
       $('#warning').prepend(message);
       if (!options) {
-				setTimeout(function() {
-					$('#warning').fadeOut(400,
-	        function() {
-	          $('#warning').remove();
-	        });
-				}, 2000);
+        setTimeout(function() {
+          $('#warning').fadeOut(400,
+          function() {
+            $('#warning').remove();
+          });
+        },
+        2000);
       } else {
         options['cancel'] = function() {
           $('#warning').fadeOut(400,

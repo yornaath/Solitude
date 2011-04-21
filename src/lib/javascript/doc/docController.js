@@ -18,7 +18,7 @@ function($, Gears, Doc) {
       currentDoc.content = c;
       var success = currentDoc.Save();
       self.saved = true;
-			return success;
+      return success;
     }
 
     this.New = function() {
@@ -38,13 +38,13 @@ function($, Gears, Doc) {
     };
 
     this.Destroy = function(id) {
-			var success = false;
+      var success = false;
       if (currentDoc) {
         success = currentDoc.Destroy(id);
       } else {
         currentDoc = new Doc();
       };
-			return success;
+      return success;
     };
 
     this.Open = function(docId) {

@@ -46,19 +46,19 @@ define(function() {
     };
 
     this.Destroy = function(id) {
-			var success = false;
+      var success = false;
       try {
         localStorage.removeItem(id);
-				success = true;
+        success = true;
       } catch(e) {
         console.log(e);
       }
-			return success;
+      return success;
     };
 
     this.Save = function() {
       var newDate = new Date();
-			var success = false;
+      var success = false;
       if (this.created == undefined) {
         var created = {
           'date': newDate.getDate(),
@@ -86,7 +86,7 @@ define(function() {
       }
       try {
         localStorage.setItem(this.id, JSON.stringify(data));
-				success = true;
+        success = true;
       } catch(e) {
         switch (e) {
         case NOT_SUPPORTED_ERR:
@@ -100,7 +100,7 @@ define(function() {
           break;
         }
       }
-			return success;
+      return success;
     }
 
 

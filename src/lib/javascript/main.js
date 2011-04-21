@@ -29,9 +29,9 @@ function($, Gears, DocController, TwitterFeedController) {
       //Action: Saves the document.
       $('#save').click(function() {
         var success = docController.Save();
-				if(success){
-					Gears.warning("Successfully saved");	
-				}
+        if (success) {
+          Gears.warning("Successfully saved");
+        }
       });
 
       //Handles: Clicking the new doc icon.
@@ -100,7 +100,7 @@ function($, Gears, DocController, TwitterFeedController) {
             $('.shadowOverlay').fadeOut(400,
             function() {
               $(this).remove();
-							Gears.warning("Successfully deleted");
+              Gears.warning("Successfully deleted");
             });
           }
         });
