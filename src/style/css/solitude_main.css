@@ -36,7 +36,6 @@ width: 100%;
 	letter-spacing: 0.041em;
 	margin: 0px 0px 0px 5%;
 	font-family: 'BebasRegular';
-	background: rgba(35/35/35, 0.2);
 	border-radius: 0px 0px 4px 4px;
 	-moz-border-radius: 0px 0px 4px 4px;
 	-webkit-border-radius: 0px 0px 4px 4px;
@@ -204,8 +203,7 @@ aside .activeStatus {
 background-color: rgba(148/199/182, 0.2);
 }
 aside .activeStatus:hover {
-background-image: 
-url(../grphx/pin.png),
+background-image:
 -webkit-gradient(
     linear,
     left bottom,
@@ -221,7 +219,6 @@ background-color: rgba(128/185/223, 0.8);
 }
 aside .lockedStatus:hover {
 	background-image: 
-	url(../grphx/x.png),
 	-webkit-gradient(
 	    linear,
 	    left bottom,

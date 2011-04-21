@@ -1,4 +1,4 @@
-define(['jquery', 'twitterFeed/TwitterFeed'],
+define(['jquery', 'twitterFeed/twitterFeed'],
 function($, TwitterFeed) {
   return function twitterFeedController() {
 
