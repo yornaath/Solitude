@@ -103,6 +103,7 @@ outline: none;
 position: relative;
 height: 37px;
 width: 100%;
+padding: 0px 5px 0px 5px;
 overflow: show;
 }
 
@@ -180,12 +181,18 @@ border-radius: 2px;
 -o-border-radius: 2px;
 background-color: rgba(255/255/255, 0.4);
 }
+#stream{
+	width: 270px;
+	max-height: 739px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
 aside p {
 position: relative;
-width: 96%;
+width: 223px;
 margin: 0px 0px 5px 0px;
 display: none;
-padding: 2%;
+padding: 5px;
 font-size: 10px;
 line-height: 22px;
 border: 1px solid rgba(148/199/182, 0.1);
@@ -238,8 +245,8 @@ width: 92.1%;
 color: rgba(211/100/59, 1);
 }
 #tagInput {
-width: 96%;
-padding: 2%;
+width: 223px;
+padding: 5px;
 height: 20px;
 line-height: 14px;
 font-size: 14px;
