@@ -271,6 +271,7 @@ background: -webkit-gradient(radial, center center, 0, center center, 700, from(
 }
 
 #docbrowser{
+	display: none;
 	position: relative;
 	margin: 100px auto 10px auto;
 	width: 600px;
@@ -342,6 +343,7 @@ background: -webkit-gradient(radial, center center, 0, center center, 700, from(
 }
 
 #popup{
+	display: none;
 	padding: 10px;
 	width: 600px;
 	background: rgba(237/235/230, 1);
@@ -369,7 +371,7 @@ background: -webkit-gradient(radial, center center, 0, center center, 700, from(
 	font-size: 10px;
 	line-height: 19px;
 	font-family: arial;
-	background: rgba(229/219/201, 1);
+	background-color: rgba(229/219/201, 1);
 	padding: 2px 5px 2px 5px;
 	border-radius: 4px 4px 4px 4px;
 	-moz-border-radius: 4px 4px 4px 4px;
